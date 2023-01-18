@@ -24,5 +24,5 @@ Posts.propTypes = {
       body: string.isRequired,
       id: number.isRequired,
     }),
-  ).is,
+  ),
 };
