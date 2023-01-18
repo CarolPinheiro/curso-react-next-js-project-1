@@ -85,4 +85,17 @@ describe('<Home/>', () => {
     expect(screen.getByRole('heading', { name: 'title2' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'title3' })).not.toBeInTheDocument();
   });
+
+  it('should load more posts', async () => {
+    render(<Home />);
+    const noMorePosts = screen.getByText('Não existem posts =(');
+
+    await waitForElementToBeRemoved(noMorePosts);
+
+    const button = screen.getByRole('button', { name: /load more posts/i });
+    userEvent.click(button);
+
+    expect(screen.getByRole('heading', { name: 'title3' })).toBeInTheDocument();
+    expect(button).toBeDisabled();
+  });
 });
